@@ -4,6 +4,17 @@ import ReactDom from "react-dom";
 var date_obj = new Date();
 var this_milliseconds = date_obj.getMilliseconds();
 var customStyle = {};
+function generateRandomColor() {
+  // Generate three random numbers between 0 and 255.
+  const red = Math.floor(Math.random() * 255);
+  const green = Math.floor(Math.random() * 255);
+  const blue = Math.floor(Math.random() * 255);
+
+  // Combine the numbers to create a hexadecimal color code.
+  const color = "#" + red.toString(16) + green.toString(16) + blue.toString(16);
+
+  return color;
+}
 function random_choice() {
   const choice = (this_milliseconds % 6) + 1;
   customStyle.display = "flex";
@@ -11,38 +22,16 @@ function random_choice() {
   customStyle.alignItems = "center";
   customStyle.background = "black";
   customStyle.align = "center";
-  customStyle.fontSize = "400px";
-  switch (choice) {
-    case 1:
-      customStyle.color = "green";
-      break;
-    case 2:
-      customStyle.color = "yellow";
-      break;
-    case 3:
-      customStyle.color = "red";
-      break;
-    case 4:
-      customStyle.color = "pink";
-      break;
-    case 5:
-      customStyle.color = "blue";
-      break;
-    case 6:
-      customStyle.color = "purple";
-      break;
-    default:
-      customStyle.color = "green";
-      break;
-  }
+  customStyle.font = "Sassoon Primary";
+
+  customStyle.fontSize = "800px";
+  customStyle.height = "100%";
+  customStyle.width = "100%";
+  customStyle.color = generateRandomColor();
   return choice;
 }
 
 ReactDom.render(
-  <div>
-    <h1 style={customStyle} className="heading">
-      {random_choice()}
-    </h1>
-  </div>,
+  <div style={customStyle}>{random_choice()}</div>,
   document.getElementById("root")
 );
